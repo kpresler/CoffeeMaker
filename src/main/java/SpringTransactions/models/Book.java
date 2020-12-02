@@ -1,0 +1,40 @@
+package SpringTransactions.models;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import lombok.Data;
+
+@Entity
+@Data
+public class Book {
+
+    @Id
+    @GeneratedValue
+    private Integer id;
+
+    @ManyToOne
+    private User author;
+
+    private String title;
+
+	public User getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(User author) {
+		this.author = author;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+    
+    
+}
