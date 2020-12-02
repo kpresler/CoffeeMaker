@@ -3,6 +3,7 @@ package SpringTransactions;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import SpringTransactions.services.UserService;
 //@ContextConfiguration(classes = {BookService.class, UserService.class})
 @SpringBootTest (classes=TestConfig.class)
 //@RunWith(SpringJUnit4ClassRunner.class)
-@Transactional
+
 public class BookTest {
 	
     @Autowired
@@ -27,9 +28,10 @@ public class BookTest {
 
 	
 	@Test
-	public void createBooks() {
+	@Transactional
+	public void createUsers() {
 		
-		List<User> users = new ArrayList();
+		List<User> users = new ArrayList<User>();
 		
 		User u1 = new User();
 		u1.setName("Jake");
@@ -44,11 +46,17 @@ public class BookTest {
 		users.add(u3);
 		
 		
-		
-		
 		userService.saveUsers(users);
 		
+		Assert.assertEquals(3, userService.findAll().size());
 		
+		
+	}
+	
+	
+	@Test
+	public void ensureNoExtraUsers() {
+		Assert.assertTrue(userService.findAll().size() < 3);
 	}
 
 }

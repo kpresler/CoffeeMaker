@@ -18,14 +18,7 @@ public class CompositeService {
     private BookService bookService;
 
     public void saveUserAndBook() {
-        User user = new User();
-        user.setName("John Smith");
-        user = userService.saveUser(user);
-
-        Book book = new Book();
-        book.setAuthor(user);
-        book.setTitle("Mr Robot");
-        bookService.saveBook(book);
+        
     }
 }
 
