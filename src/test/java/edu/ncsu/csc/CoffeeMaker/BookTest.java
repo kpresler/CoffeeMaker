@@ -52,7 +52,6 @@ public class BookTest {
 		
 		Assert.assertTrue(userService.findAll().size() >= 3);
 		
-		
 	}
 	
 	

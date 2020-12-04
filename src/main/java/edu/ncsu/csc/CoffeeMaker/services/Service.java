@@ -2,6 +2,7 @@ package edu.ncsu.csc.CoffeeMaker.services;
 
 import java.util.List;
 
+import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import edu.ncsu.csc.CoffeeMaker.models.DomainObject;
@@ -14,7 +15,7 @@ abstract public class Service {
 		getRepository().save(obj);
 	}
 	
-	public List<? super DomainObject> findAll(){
+	public List<? extends DomainObject> findAll(){
 		return getRepository().findAll();
 	}
 	
@@ -28,5 +29,10 @@ abstract public class Service {
 	
 	public void deleteAll() {
 		getRepository().deleteAll();
+	}
+	
+	protected List<? extends DomainObject> findBy(Example<DomainObject> example) {
+		return getRepository().findAll(example);
+		
 	}
 }

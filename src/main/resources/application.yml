@@ -9,4 +9,5 @@ spring:
       ddl-auto: update
       dialect: org.hibernate.dialect.MySQL5Dialect
     show-sql: true
-    
+server:
+  port: 8080
