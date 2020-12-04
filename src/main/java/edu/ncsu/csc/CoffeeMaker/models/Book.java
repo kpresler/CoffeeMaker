@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Book {
+public class Book extends DomainObject {
 
     @Id
     @GeneratedValue

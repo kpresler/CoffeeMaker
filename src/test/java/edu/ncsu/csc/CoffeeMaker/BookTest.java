@@ -12,7 +12,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.ncsu.csc.CoffeeMaker.models.Book;
 import edu.ncsu.csc.CoffeeMaker.models.User;
+import edu.ncsu.csc.CoffeeMaker.services.BookService;
 
 @RunWith(SpringRunner.class)
 @EnableAutoConfiguration
@@ -23,6 +25,9 @@ public class BookTest {
     @Autowired
     private edu.ncsu.csc.CoffeeMaker.services.UserService userService;
 
+    
+    @Autowired
+    private BookService bookService;
 	
 	@Test
 	@Transactional
@@ -43,7 +48,7 @@ public class BookTest {
 		users.add(u3);
 		
 		
-		userService.saveUsers(users);
+		userService.saveAll(users);
 		
 		Assert.assertTrue(userService.findAll().size() >= 3);
 		
@@ -64,13 +69,33 @@ public class BookTest {
 		User u = new User();
 		u.setName("Aleksandr");
 		
-		userService.saveUser(u);
+		userService.save(u);
 		
 		Assert.assertEquals(1, userService.findAll().size() - numStarting);
 		
-		userService.deleteUser(u);
+		userService.delete(u);
 		
 		Assert.assertEquals(numStarting, userService.findAll().size());
+	}
+	
+	@Test
+	public void testUserAndBook() {
+		
+		bookService.deleteAll();
+        
+		Assert.assertEquals(0, bookService.findAll().size());
+		User user = new User();
+        user.setName("John Smith");
+        userService.save(user);
+
+        Book book = new Book();
+        book.setAuthor(user);
+        book.setTitle("Mr Robot");
+        bookService.save(book);
+        
+        Assert.assertEquals("Mr Robot", ((Book) bookService.findAll().get(0)).getTitle());
+        
+        Assert.assertEquals(1, bookService.findAll().size());
 	}
 
 }
