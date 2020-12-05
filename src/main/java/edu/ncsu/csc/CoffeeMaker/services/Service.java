@@ -12,7 +12,7 @@ abstract public class Service {
 	abstract protected JpaRepository<DomainObject, ? extends Object> getRepository();
 	
 	public void save (DomainObject obj) {
-		getRepository().save(obj);
+		getRepository().saveAndFlush(obj);
 	}
 	
 	public List<? extends DomainObject> findAll(){
@@ -21,6 +21,7 @@ abstract public class Service {
 	
 	public void saveAll(List <? extends DomainObject> objects) {
 		getRepository().saveAll(objects);
+		getRepository().flush();
 	}
 	
 	public void delete(DomainObject obj) {
@@ -31,8 +32,14 @@ abstract public class Service {
 		getRepository().deleteAll();
 	}
 	
+	public long count() {
+		return getRepository().count();
+	}
+	
 	protected List<? extends DomainObject> findBy(Example<DomainObject> example) {
 		return getRepository().findAll(example);
 		
 	}
+	
+	
 }
