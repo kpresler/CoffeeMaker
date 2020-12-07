@@ -21,6 +21,23 @@
 
 	<dependencies>
 
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.paulhammant</groupId>
+			<artifactId>ngwebdriver</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>3.6.2</version>
+		</dependency>
+
+
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -65,7 +82,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.13.1</version><!--$NO-MVN-MAN-VER$-->
+			<version>4.13.1</version><!--$NO-MVN-MAN-VER$ -->
 			<scope>test</scope>
 		</dependency>
 

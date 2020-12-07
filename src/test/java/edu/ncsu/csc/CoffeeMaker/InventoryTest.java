@@ -13,15 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.ncsu.csc.CoffeeMaker.models.Inventory;
 import edu.ncsu.csc.CoffeeMaker.models.Recipe;
 import edu.ncsu.csc.CoffeeMaker.services.InventoryService;
-import edu.ncsu.csc.CoffeeMaker.services.RecipeService;
 
 @RunWith(SpringRunner.class)
 @EnableAutoConfiguration
 @SpringBootTest(classes = TestConfig.class)
 public class InventoryTest {
 
-	@Autowired
-	private RecipeService recipeService;
 
 	@Autowired
 	private InventoryService inventoryService;
@@ -71,8 +68,6 @@ public class InventoryTest {
 			Assert.assertEquals("Trying to add a negative value to the inventory should result in no updates", 520,
 					ivt.getChocolate());	
 		}
-
-		
 
 	}
 

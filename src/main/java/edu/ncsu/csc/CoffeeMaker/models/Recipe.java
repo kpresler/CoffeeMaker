@@ -47,13 +47,7 @@ public class Recipe extends DomainObject {
      * Creates a default recipe for the coffee maker.
      */
     public Recipe () {
-        this.id = 0L;
         this.name = "";
-        this.price = 0;
-        this.coffee = 0;
-        this.milk = 0;
-        this.sugar = 0;
-        this.chocolate = 0;
     }
     
     /**
