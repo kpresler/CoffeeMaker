@@ -78,7 +78,7 @@ public class APICoffeeController extends APIController {
      * @return change if there was enough money to make the coffee, throws
      *         exceptions if not
      */
-    private int makeCoffee ( final Recipe toPurchase, final int amtPaid ) {
+    public int makeCoffee ( final Recipe toPurchase, final int amtPaid ) {
         int change = amtPaid;
         final Inventory inventory = inventoryService.getInventory();
 
