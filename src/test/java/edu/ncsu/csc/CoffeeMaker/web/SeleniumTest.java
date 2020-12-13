@@ -26,6 +26,7 @@ abstract class SeleniumTest extends TestCase {
     @Override
     protected void setUp () throws Exception {
         driver = BrowserHandler.getInstance().getDriver();
+
     }
 
     static private boolean Mac () {

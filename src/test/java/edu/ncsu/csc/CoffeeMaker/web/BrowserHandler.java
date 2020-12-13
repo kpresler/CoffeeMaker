@@ -1,6 +1,5 @@
 package edu.ncsu.csc.CoffeeMaker.web;
 
-
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -36,7 +35,7 @@ public class BrowserHandler {
 
         ChromeDriverManager.chromedriver().setup();
         final ChromeOptions options = new ChromeOptions();
-//        options.addArguments( "headless" );
+        options.addArguments( "headless" );
         options.addArguments( "window-size=1200x600" );
         options.addArguments( "blink-settings=imagesEnabled=false" );
 

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.ncsu.csc.CoffeeMaker.models.Recipe;
 import edu.ncsu.csc.CoffeeMaker.services.RecipeService;
 
-
 /**
  * This is the controller that holds the REST endpoints that handle CRUD
  * operations for Recipes.
@@ -30,10 +29,10 @@ import edu.ncsu.csc.CoffeeMaker.services.RecipeService;
 @SuppressWarnings ( { "unchecked", "rawtypes" } )
 @RestController
 public class APIRecipeController extends APIController {
-	
-	@Autowired
-	private RecipeService service;
-	
+
+    @Autowired
+    private RecipeService service;
+
     /**
      * REST API method to provide GET access to all recipes in the system
      *
@@ -78,7 +77,7 @@ public class APIRecipeController extends APIController {
                     HttpStatus.CONFLICT );
         }
         if ( service.findAll().size() < 3 ) {
-        	service.save(recipe);
+            service.save( recipe );
             return new ResponseEntity( successResponse( recipe.getName() + " successfully created" ), HttpStatus.OK );
         }
         else {
@@ -88,8 +87,6 @@ public class APIRecipeController extends APIController {
         }
 
     }
-
-
 
     /**
      * REST API method to allow deleting a Recipe from the CoffeeMaker's
@@ -107,7 +104,7 @@ public class APIRecipeController extends APIController {
         if ( null == recipe ) {
             return new ResponseEntity( errorResponse( "No recipe found for name " + name ), HttpStatus.NOT_FOUND );
         }
-        service.delete(recipe);
+        service.delete( recipe );
 
         return new ResponseEntity( successResponse( name + " was deleted successfully" ), HttpStatus.OK );
     }

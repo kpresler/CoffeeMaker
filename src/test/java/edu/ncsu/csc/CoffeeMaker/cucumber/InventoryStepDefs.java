@@ -24,13 +24,12 @@ import io.cucumber.java.en.When;
 
 public class InventoryStepDefs {
     private final SharedInventoryData inventoryData;
-    
-    @Autowired
-    protected InventoryService inventoryService;
-    
-    @Autowired
-    protected RecipeService recipeService;
 
+    @Autowired
+    protected InventoryService        inventoryService;
+
+    @Autowired
+    protected RecipeService           recipeService;
 
     /**
      * Constructor
@@ -91,12 +90,12 @@ public class InventoryStepDefs {
     @Given ( "^there is (-?\\d+) coffee, (-?\\d+) milk, (-?\\d+) sugar, and (-?\\d+) chocolate in the CoffeeMaker$" )
     public void initialInventory ( final int originalCoffee, final int originalMilk, final int originalSugar,
             final int originalChocolate ) {
-    	inventoryService.deleteAll();
-    	recipeService.deleteAll();
+        inventoryService.deleteAll();
+        recipeService.deleteAll();
 
         final Inventory i = inventoryService.getInventory();
         i.addIngredients( originalCoffee, originalMilk, originalSugar, originalChocolate );
-        inventoryService.save(i);
+        inventoryService.save( i );
 
         inventoryData.originalCoffee = originalCoffee;
         inventoryData.originalMilk = originalMilk;
@@ -126,7 +125,7 @@ public class InventoryStepDefs {
         try {
             final Inventory inventory = inventoryService.getInventory();
             inventory.addIngredients( amtCoffee, amtMilk, amtSugar, amtChocolate );
-            inventoryService.save(inventory);
+            inventoryService.save( inventory );
         }
         catch ( final Exception e ) {
             Assert.fail( "Inventory not added. InventoryException thrown" );
@@ -152,7 +151,7 @@ public class InventoryStepDefs {
         try {
             final Inventory inventory = inventoryService.getInventory();
             inventory.addIngredients( amtCoffee, amtMilk, amtSugar, amtChocolate );
-            inventoryService.save(inventory);
+            inventoryService.save( inventory );
             Assert.fail( "Inventory added without throwing an error." );
         }
         catch ( final Exception e ) {
@@ -188,7 +187,7 @@ public class InventoryStepDefs {
             inventory.setMilk( amtMilk );
             inventory.setSugar( amtSugar );
             inventory.setChocolate( amtChocolate );
-            inventoryService.save(inventory);
+            inventoryService.save( inventory );
         }
         catch ( final Exception e ) {
             Assert.fail( "Inventory not added. InventoryException thrown" );

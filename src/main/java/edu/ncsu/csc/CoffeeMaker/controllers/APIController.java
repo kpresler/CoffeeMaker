@@ -1,6 +1,5 @@
 package edu.ncsu.csc.CoffeeMaker.controllers;
 
-
 import com.google.gson.Gson;
 
 /**

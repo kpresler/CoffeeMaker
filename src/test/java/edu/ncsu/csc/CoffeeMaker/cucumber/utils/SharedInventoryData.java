@@ -1,6 +1,5 @@
 package edu.ncsu.csc.CoffeeMaker.cucumber.utils;
 
-
 /**
  * Shared information about Inventory for Cucumber tests.
  *

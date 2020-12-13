@@ -1,6 +1,5 @@
 package edu.ncsu.csc.CoffeeMaker.models;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,7 +14,7 @@ import javax.validation.constraints.Min;
 @Entity
 public class Recipe extends DomainObject {
 
-	/** Recipe id */
+    /** Recipe id */
     @Id
     @GeneratedValue
     private Long    id;
@@ -24,23 +23,23 @@ public class Recipe extends DomainObject {
     private String  name;
 
     /** Recipe price */
-    @Min(0)
+    @Min ( 0 )
     private Integer price;
 
     /** Amount coffee */
-    @Min(0)
+    @Min ( 0 )
     private Integer coffee;
 
     /** Amount milk */
-    @Min(0)
+    @Min ( 0 )
     private Integer milk;
 
     /** Amount sugar */
-    @Min(0)
+    @Min ( 0 )
     private Integer sugar;
 
     /** Amount chocolate */
-    @Min(0)
+    @Min ( 0 )
     private Integer chocolate;
 
     /**
@@ -49,13 +48,14 @@ public class Recipe extends DomainObject {
     public Recipe () {
         this.name = "";
     }
-    
+
     /**
      * Check if all ingredient fields in the recipe are 0
+     *
      * @return true if all ingredient fields are 0, otherwise return false
      */
     public boolean checkRecipe () {
-    	return coffee == 0 && milk == 0 && sugar == 0 && chocolate == 0;
+        return coffee == 0 && milk == 0 && sugar == 0 && chocolate == 0;
     }
 
     /**

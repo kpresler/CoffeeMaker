@@ -17,27 +17,29 @@ import edu.ncsu.csc.CoffeeMaker.repositories.RecipeRepository;
 @Transactional
 public class RecipeService extends Service {
 
-	@Autowired
-	private RecipeRepository recipeRepository;
+    @Autowired
+    private RecipeRepository recipeRepository;
 
-	protected JpaRepository getRepository() {
-		return recipeRepository;
-	}
+    @Override
+    protected JpaRepository getRepository () {
+        return recipeRepository;
+    }
 
-	public Recipe findByName(String name) {
-		Recipe recipe = new Recipe();
-		recipe.setName(name);
+    public Recipe findByName ( final String name ) {
+        final Recipe recipe = new Recipe();
+        recipe.setName( name );
 
-		ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("name",
-				ExampleMatcher.GenericPropertyMatchers.exact());
+        final ExampleMatcher matcher = ExampleMatcher.matching().withMatcher( "name",
+                ExampleMatcher.GenericPropertyMatchers.exact() );
 
-		Example<Recipe> example = Example.of(recipe, matcher);
+        final Example<Recipe> example = Example.of( recipe, matcher );
 
-		try {
-			return (Recipe) recipeRepository.findOne(example).get();
-		} catch (NoSuchElementException nsee) {
-			return null;
-		}
-	}
+        try {
+            return recipeRepository.findOne( example ).get();
+        }
+        catch ( final NoSuchElementException nsee ) {
+            return null;
+        }
+    }
 
 }

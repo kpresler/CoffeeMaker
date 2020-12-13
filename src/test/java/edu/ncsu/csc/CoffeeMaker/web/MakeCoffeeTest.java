@@ -1,8 +1,9 @@
 package edu.ncsu.csc.CoffeeMaker.web;
 
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import javax.sql.DataSource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -17,11 +18,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import edu.ncsu.csc.CoffeeMaker.TestConfig;
+import edu.ncsu.csc.CoffeeMaker.common.DBUtils;
 import edu.ncsu.csc.CoffeeMaker.models.Inventory;
 import edu.ncsu.csc.CoffeeMaker.models.Recipe;
 import edu.ncsu.csc.CoffeeMaker.services.InventoryService;
 import edu.ncsu.csc.CoffeeMaker.services.RecipeService;
-
 
 /**
  * Tests Make Coffee functionality.
@@ -30,31 +31,41 @@ import edu.ncsu.csc.CoffeeMaker.services.RecipeService;
  * @author Kai Presler-Marshall (kpresle@ncsu.edu)
  */
 
-@RunWith(SpringRunner.class)
+@RunWith ( SpringRunner.class )
 @EnableAutoConfiguration
-@SpringBootTest(classes = TestConfig.class)
+@SpringBootTest ( classes = TestConfig.class )
 public class MakeCoffeeTest extends SeleniumTest {
 
     /** The URL for CoffeeMaker - change as needed */
     private String             baseUrl;
     private final StringBuffer verificationErrors = new StringBuffer();
-    
+
     @Autowired
-    private InventoryService inventoryService;
-    
+    private InventoryService   inventoryService;
+
     @Autowired
-    private RecipeService recipeService;
+    private RecipeService      recipeService;
+
+    @Autowired
+    private DataSource         dataSource;
 
     @Override
     @Before
     public void setUp () throws Exception {
-    	inventoryService.deleteAll();
+        super.setUp();
+
+        DBUtils.resetDB( dataSource );
 
         /* Create lots of inventory to use */
-        final Inventory ivt = new Inventory( 500, 500, 500, 500 );
-        inventoryService.save(ivt);
+        final Inventory ivt = inventoryService.getInventory();
 
-        super.setUp();
+        ivt.setChocolate( 500 );
+        ivt.setCoffee( 500 );
+        ivt.setMilk( 500 );
+        ivt.setSugar( 500 );
+
+        inventoryService.save( ivt );
+
         baseUrl = "http://localhost:8080";
         driver.manage().timeouts().implicitlyWait( 20, TimeUnit.SECONDS );
 
@@ -72,7 +83,7 @@ public class MakeCoffeeTest extends SeleniumTest {
 
         final Recipe e = recipeService.findByName( name );
         if ( null != e ) {
-            recipeService.delete(e);
+            recipeService.delete( e );
         }
 
         final Recipe recipe = new Recipe();
@@ -82,7 +93,7 @@ public class MakeCoffeeTest extends SeleniumTest {
         recipe.setMilk( amtMilk );
         recipe.setSugar( amtSugar );
         recipe.setChocolate( amtChocolate );
-        recipeService.save(recipe);
+        recipeService.save( recipe );
 
     }
 

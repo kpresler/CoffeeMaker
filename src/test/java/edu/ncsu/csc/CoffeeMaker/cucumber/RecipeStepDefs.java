@@ -23,13 +23,12 @@ import io.cucumber.java.en.When;
  */
 public class RecipeStepDefs {
     private final SharedRecipeData recipeData;
-    
+
     @Autowired
-    protected InventoryService inventoryService;
-    
+    protected InventoryService     inventoryService;
+
     @Autowired
-    protected RecipeService recipeService;
-    
+    protected RecipeService        recipeService;
 
     /**
      * Constructor for the RecipeStepDefs. Used to keep track of CoffeeMaker's
@@ -85,7 +84,7 @@ public class RecipeStepDefs {
                     catch ( final Exception e ) {
                         Assert.fail( "Error in creating recipes" );
                     }
-                    recipeService.save(testR);
+                    recipeService.save( testR );
                     recipeData.latestRecipeAdded = recipeService.findAll().contains( testR );
 
                 }
@@ -118,7 +117,7 @@ public class RecipeStepDefs {
         final Recipe toDelete = recipeService.findByName( name );
         recipeData.currentRecipe = toDelete;
 
-        recipeService.delete(toDelete);
+        recipeService.delete( toDelete );
     }
 
     /**
@@ -136,7 +135,7 @@ public class RecipeStepDefs {
         toDelete.setName( name );
 
         try {
-            recipeService.delete(toDelete);
+            recipeService.delete( toDelete );
         }
         catch ( final Exception e ) {
             recipeData.recipeError = e.getMessage();
@@ -187,7 +186,7 @@ public class RecipeStepDefs {
         }
         if ( recipeService.findByName( newR.getName() ) == null && recipeService.findAll().size() < 3 ) {
             recipeData.currentRecipe = newR;
-            recipeService.save(newR);
+            recipeService.save( newR );
             recipeData.latestRecipeAdded = true;
         }
         else {
@@ -238,7 +237,7 @@ public class RecipeStepDefs {
 
             if ( recipeService.findByName( newR.getName() ) == null && recipeService.findAll().size() < 3 ) {
                 recipeData.currentRecipe = newR;
-                recipeService.save(newR);
+                recipeService.save( newR );
                 recipeData.latestRecipeAdded = true;
             }
             else {
@@ -287,7 +286,7 @@ public class RecipeStepDefs {
         }
         recipeData.currentRecipe = newR;
 
-        recipeService.save(newR);
+        recipeService.save( newR );
     }
 
     /**

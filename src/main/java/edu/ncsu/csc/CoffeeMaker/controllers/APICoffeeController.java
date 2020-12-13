@@ -1,6 +1,5 @@
 package edu.ncsu.csc.CoffeeMaker.controllers;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,6 @@ import edu.ncsu.csc.CoffeeMaker.models.Inventory;
 import edu.ncsu.csc.CoffeeMaker.models.Recipe;
 import edu.ncsu.csc.CoffeeMaker.services.InventoryService;
 import edu.ncsu.csc.CoffeeMaker.services.RecipeService;
-
 
 /**
  * This is the single controller in the CoffeeMaker application that handles
@@ -30,13 +28,12 @@ import edu.ncsu.csc.CoffeeMaker.services.RecipeService;
 @RestController
 public class APICoffeeController extends APIController {
 
-	
-	@Autowired
-	private InventoryService inventoryService;
-	
-	@Autowired
-	private RecipeService recipeService;
-	
+    @Autowired
+    private InventoryService inventoryService;
+
+    @Autowired
+    private RecipeService    recipeService;
+
     /**
      * REST API method to make coffee by completing a POST request with the ID
      * of the recipe as the path variable and the amount that has been paid as
@@ -50,7 +47,7 @@ public class APICoffeeController extends APIController {
      */
     @PostMapping ( BASE_PATH + "/makecoffee/{name}" )
     public ResponseEntity makeCoffee ( @PathVariable ( "name" ) final String name, @RequestBody final int amtPaid ) {
-        final Recipe recipe = recipeService.findByName(name);
+        final Recipe recipe = recipeService.findByName( name );
         if ( recipe == null ) {
             return new ResponseEntity( errorResponse( "No recipe selected" ), HttpStatus.NOT_FOUND );
         }
@@ -87,7 +84,7 @@ public class APICoffeeController extends APIController {
         }
         else if ( toPurchase.getPrice() <= amtPaid ) {
             if ( inventory.useIngredients( toPurchase ) ) {
-                inventoryService.save(inventory);
+                inventoryService.save( inventory );
                 change = amtPaid - toPurchase.getPrice();
                 return change;
             }

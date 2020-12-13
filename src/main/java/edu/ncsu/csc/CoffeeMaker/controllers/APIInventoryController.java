@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.ncsu.csc.CoffeeMaker.models.Inventory;
 import edu.ncsu.csc.CoffeeMaker.services.InventoryService;
 
-
 /**
  * This is the controller that holds the REST endpoints that handle add and
  * update operations for the Inventory.
@@ -26,9 +25,9 @@ import edu.ncsu.csc.CoffeeMaker.services.InventoryService;
 @SuppressWarnings ( { "unchecked", "rawtypes" } )
 @RestController
 public class APIInventoryController extends APIController {
-	
-	@Autowired
-	private InventoryService service;
+
+    @Autowired
+    private InventoryService service;
 
     /**
      * REST API endpoint to provide GET access to the CoffeeMaker's singleton
@@ -52,11 +51,11 @@ public class APIInventoryController extends APIController {
      * @return response to the request
      */
     @PutMapping ( BASE_PATH + "/inventory" )
-    public ResponseEntity updateInventory ( @RequestBody  final Inventory inventory ) {
+    public ResponseEntity updateInventory ( @RequestBody final Inventory inventory ) {
         final Inventory inventoryCurrent = service.getInventory();
         inventoryCurrent.addIngredients( inventory.getCoffee(), inventory.getMilk(), inventory.getSugar(),
                 inventory.getChocolate() );
-        service.save(inventoryCurrent);
+        service.save( inventoryCurrent );
         return new ResponseEntity( inventoryCurrent, HttpStatus.OK );
     }
 }

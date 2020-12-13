@@ -15,15 +15,15 @@ import edu.ncsu.csc.CoffeeMaker.repositories.InventoryRepository;
 @Transactional
 public class InventoryService extends Service {
 
-	@Autowired
-	private InventoryRepository inventoryRepository;
+    @Autowired
+    private InventoryRepository inventoryRepository;
 
-	@Override
-	protected JpaRepository getRepository() {
-		return inventoryRepository;
-	}
-	
-	public Inventory getInventory() {
+    @Override
+    protected JpaRepository getRepository () {
+        return inventoryRepository;
+    }
+
+    public synchronized Inventory getInventory () {
         final List<Inventory> inventoryList = (List<Inventory>) findAll();
         if ( inventoryList != null && inventoryList.size() == 1 ) {
             return inventoryList.get( 0 );
@@ -31,9 +31,9 @@ public class InventoryService extends Service {
         else {
             // initialize the inventory with 0 of everything
             final Inventory i = new Inventory( 0, 0, 0, 0 );
-            save(i);
+            save( i );
             return i;
         }
-	}
+    }
 
 }

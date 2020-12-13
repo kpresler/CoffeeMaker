@@ -22,16 +22,16 @@ import io.cucumber.java.en.When;
  */
 public class MakeCoffeeStepDefs {
     private final SharedCoffeeMakerData makerData;
-    
+
     @Autowired
-    protected InventoryService inventoryService;
-    
+    protected InventoryService          inventoryService;
+
     @Autowired
-    protected RecipeService recipeService;
-    
+    protected RecipeService             recipeService;
+
     @Autowired
-    private APICoffeeController coffeeCtrl;
-    
+    private APICoffeeController         coffeeCtrl;
+
     /**
      * Constructor for the StepDefs
      *
@@ -68,7 +68,7 @@ public class MakeCoffeeStepDefs {
         inventoryService.deleteAll();
         final Inventory i = inventoryService.getInventory();
         i.addIngredients( originalCoffee, originalMilk, originalSugar, originalChocolate );
-        inventoryService.save(i);
+        inventoryService.save( i );
     }
 
     /**
@@ -137,7 +137,7 @@ public class MakeCoffeeStepDefs {
                     catch ( final Exception e ) {
                         Assert.fail( "Error in creating recipes" );
                     }
-                    recipeService.save(testR);
+                    recipeService.save( testR );
 
                 }
                 catch ( final Exception e ) {
@@ -176,7 +176,7 @@ public class MakeCoffeeStepDefs {
             newR.setMilk( milkAmt );
             newR.setSugar( sugarAmt );
             newR.setChocolate( chocolateAmt );
-            recipeService.save(newR);
+            recipeService.save( newR );
             makerData.currentRecipe = newR;
         }
         catch ( final Exception e ) {

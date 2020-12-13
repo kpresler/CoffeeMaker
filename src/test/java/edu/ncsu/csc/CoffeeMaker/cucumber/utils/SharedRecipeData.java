@@ -1,11 +1,9 @@
 package edu.ncsu.csc.CoffeeMaker.cucumber.utils;
 
-
 import java.util.List;
 import java.util.Vector;
 
 import edu.ncsu.csc.CoffeeMaker.models.Recipe;
-
 
 /**
  * Shared information about Recipes for Cucumber tests.

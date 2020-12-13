@@ -1,39 +1,45 @@
 package edu.ncsu.csc.CoffeeMaker.web;
 
-
 import java.util.concurrent.TimeUnit;
 
+import javax.sql.DataSource;
+
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import edu.ncsu.csc.CoffeeMaker.TestConfig;
+import edu.ncsu.csc.CoffeeMaker.common.DBUtils;
 
 /**
  * Tests Add Recipe functionality.
  *
  * @author Kai Presler-Marshall (kpresle@ncsu.edu)
  */
-@RunWith(SpringRunner.class)
+@RunWith ( SpringRunner.class )
 @EnableAutoConfiguration
-@SpringBootTest(classes = TestConfig.class)
+@SpringBootTest ( classes = TestConfig.class )
 public class AddRecipeTest extends SeleniumTest {
 
     /** The URL for CoffeeMaker - change as needed */
     private String             baseUrl;
     private final StringBuffer verificationErrors = new StringBuffer();
 
+    @Autowired
+    private DataSource         dataSource;
+
     @Override
     @Before
     public void setUp () throws Exception {
         super.setUp();
+
+        DBUtils.resetDB( dataSource );
 
         baseUrl = "http://localhost:8080";
         driver.manage().timeouts().implicitlyWait( 10, TimeUnit.SECONDS );
@@ -85,11 +91,11 @@ public class AddRecipeTest extends SeleniumTest {
      */
     @Test
     public void testAddRecipe2 () throws Exception {
-        try{
-        	addRecipeHelper();
+        try {
+            addRecipeHelper();
         }
-        catch (Exception e) {
-        	// maybe already have one, ?
+        catch ( final Exception e ) {
+            // maybe already have one, ?
         }
         addRecipeHelper();
 
@@ -104,6 +110,5 @@ public class AddRecipeTest extends SeleniumTest {
             fail( verificationErrorString );
         }
     }
-    
 
 }

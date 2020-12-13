@@ -1,6 +1,5 @@
 package edu.ncsu.csc.CoffeeMaker.models;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,16 +24,16 @@ public class Inventory extends DomainObject {
     @GeneratedValue
     private Long id;
     /** amount of coffee */
-    @Min(0)
+    @Min ( 0 )
     private int  coffee;
     /** amount of milk */
-    @Min(0)
+    @Min ( 0 )
     private int  milk;
     /** amount of sugar */
-    @Min(0)
+    @Min ( 0 )
     private int  sugar;
     /** amount of chocolate */
-    @Min(0)
+    @Min ( 0 )
     private int  chocolate;
 
     /**
