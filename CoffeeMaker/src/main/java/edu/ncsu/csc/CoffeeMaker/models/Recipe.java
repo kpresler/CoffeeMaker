@@ -7,7 +7,8 @@ import javax.validation.constraints.Min;
 
 /**
  * Recipe for the coffee maker. Recipe is tied to the database using Hibernate
- * libraries.
+ * libraries. See RecipeRepository and RecipeService for the other two pieces
+ * used for database support.
  *
  * @author Kai Presler-Marshall
  */

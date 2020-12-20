@@ -3,20 +3,16 @@ package edu.ncsu.csc.CoffeeMaker.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.Min;
-
-import org.springframework.validation.annotation.Validated;
 
 /**
  * Inventory for the coffee maker. Inventory is tied to the database using
- * Hibernate libraries.
+ * Hibernate libraries. See InventoryRepository and InventoryService for the
+ * other two pieces used for database support.
  *
  * @author Kai Presler-Marshall
  */
 @Entity
-@Table ( name = "inventory" )
-@Validated
 public class Inventory extends DomainObject {
 
     /** id for inventory entry */

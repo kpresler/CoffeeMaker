@@ -13,6 +13,14 @@ import org.springframework.stereotype.Component;
 import edu.ncsu.csc.CoffeeMaker.models.Recipe;
 import edu.ncsu.csc.CoffeeMaker.repositories.RecipeRepository;
 
+/**
+ * The RecipeService is used to handle CRUD operations on the Recipe model. In
+ * addition to all functionality from `Service`, we also have functionality for
+ * retrieving a single Recipe by name.
+ *
+ * @author Kai Presler-Marshall
+ *
+ */
 @Component
 @Transactional
 public class RecipeService extends Service {

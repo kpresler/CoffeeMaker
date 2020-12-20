@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * Controller class for the URL mappings for CoffeeMaker. The controller returns
- * the approprate HTML page in the /src/main/resources/templates folder.
+ * the approprate HTML page in the /src/main/resources/templates folder. For a
+ * larger application, this should be split across multiple controllers.
  *
  * @author Kai Presler-Marshall
  */

@@ -11,6 +11,14 @@ import org.springframework.stereotype.Component;
 import edu.ncsu.csc.CoffeeMaker.models.Inventory;
 import edu.ncsu.csc.CoffeeMaker.repositories.InventoryRepository;
 
+/**
+ * The InventoryService is used to handle CRUD operations on the Inventory
+ * model. In addition to all functionality in `Service`, we also manage the
+ * Inventory singleton.
+ *
+ * @author Kai Presler-Marshall
+ *
+ */
 @Component
 @Transactional
 public class InventoryService extends Service {
@@ -23,6 +31,12 @@ public class InventoryService extends Service {
         return inventoryRepository;
     }
 
+    /**
+     * Retrieves the singleton Inventory instance from the database, creating it
+     * if it does not exist.
+     *
+     * @return
+     */
     public synchronized Inventory getInventory () {
         final List<Inventory> inventoryList = (List<Inventory>) findAll();
         if ( inventoryList != null && inventoryList.size() == 1 ) {

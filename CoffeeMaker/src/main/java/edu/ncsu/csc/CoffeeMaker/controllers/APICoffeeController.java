@@ -14,9 +14,9 @@ import edu.ncsu.csc.CoffeeMaker.services.InventoryService;
 import edu.ncsu.csc.CoffeeMaker.services.RecipeService;
 
 /**
- * This is the single controller in the CoffeeMaker application that handles
- * REST API endpoints In a larger application, we would want multiple REST API
- * controllers, one per model.
+ *
+ * The APICoffeeController is responsible for making coffee when a user submits
+ * a request to do so.
  *
  * Spring will automatically convert all of the ResponseEntity and List results
  * to JSON

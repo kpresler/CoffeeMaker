@@ -11,7 +11,7 @@ import org.junit.Assert;
 
 public class DBUtils {
 
-    static final private String DB_NAME = "springtrans";
+    static final private String DB_NAME = "CoffeeMaker";
 
     static public void resetDB ( final DataSource dataSource ) {
         try ( Connection conn = dataSource.getConnection(); ) {
